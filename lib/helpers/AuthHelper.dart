@@ -25,8 +25,6 @@ class AuthHelper {
             throw "Doctor accounts cant use patient app.";
           }
           _preferences.setInt('id', jsonDecode(value.body)['user']['id']);
-          print(jsonDecode(value.body)['user']['id']);
-          print(jsonDecode(value.body)['auth_token']);
           _preferences.setString(
               'authtoken', jsonDecode(value.body)['auth_token']);
         }
@@ -45,7 +43,6 @@ class AuthHelper {
       });
       return jsonDecode(res.body)['Auth'];
     } catch (e) {
-      print(e);
       throw "Server Down";
     }
   }
@@ -73,7 +70,6 @@ class AuthHelper {
         if (value.statusCode != 200) {
           throw jsonDecode(value.body)['ERR'];
         } else {
-          print("User : " + value.body);
           login(email, password);
         }
       });
@@ -105,7 +101,6 @@ class AuthHelper {
         }
       }
     } catch (e) {
-      print("err" + e);
       onServerDown();
     }
   }

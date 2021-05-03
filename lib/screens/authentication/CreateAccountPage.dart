@@ -202,6 +202,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                   borderRadius: BorderRadius.circular(4)),
                               child: TextFormField(
                                 obscureText: true,
+                                // ignore: missing_return
                                 validator: (val) {
                                   if (val != password) {
                                     return "Passwords donot match";
