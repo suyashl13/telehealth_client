@@ -7,6 +7,7 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
+  // ignore: non_constant_identifier_names
   String name, email, phone, birth_year, password, confirm_password = '';
   String gender = 'Male';
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();

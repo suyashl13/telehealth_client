@@ -25,7 +25,6 @@ class _TokensListState extends State<TokensList>
     await TokenHelper().getAppointmentTokens(
         // ignore: missing_return
         (data) {
-      print(jsonDecode(data));
       setState(() {
         activeTokens = jsonDecode(data);
         isLoading = false;
@@ -40,31 +39,35 @@ class _TokensListState extends State<TokensList>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ListView.builder(
-      itemCount: activeTokens.length,
-      itemBuilder: (context, index) => !activeTokens[index]['is_assigned']
-          ? ListTile(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TokenScreen(activeTokens[index]),
-                  )),
-              title: Text("Dr. " + activeTokens[index]['doctor'].toString()),
-              subtitle: Text("${activeTokens[index]['symptoms']}"),
-              trailing: Card(
-                elevation: 0,
-                color: Colors.green,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    "See Token",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            )
-          : SizedBox(),
-    );
+    return isLoading
+        ? Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            itemCount: activeTokens.length,
+            itemBuilder: (context, index) => !activeTokens[index]['is_assigned']
+                ? ListTile(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TokenScreen(activeTokens[index]),
+                        )),
+                    title:
+                        Text("Dr. " + activeTokens[index]['doctor'].toString()),
+                    subtitle: Text("${activeTokens[index]['symptoms']}"),
+                    trailing: Card(
+                      elevation: 0,
+                      color: Colors.green,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          "See Token",
+                          style: TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+          );
   }
 
   @override

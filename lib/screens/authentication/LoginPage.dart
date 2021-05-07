@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telehealth_client/helpers/AuthHelper.dart';
-import 'package:telehealth_client/screens/HomePage.dart';
 import 'package:telehealth_client/screens/authentication/CreateAccountPage.dart';
+import 'package:telehealth_client/screens/wrapper.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomePage(),
+                                      builder: (context) => wrapper(),
                                     ));
                                 setState(() {
                                   isLoading = !isLoading;

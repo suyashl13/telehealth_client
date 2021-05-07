@@ -47,31 +47,37 @@ class _AppointmentListState extends State<AppointmentList>
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : ListView.builder(
-                  itemCount: appointments.activeAppointments.length,
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text("Dr. " +
-                        appointments.activeAppointments[index]['doctor']),
-                    subtitle: Text(
-                        "${DateFormat.MMMMEEEEd().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated'])) + " - " + DateFormat.jm().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated']))}"),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AppointmentScreen(
-                              appointments.activeAppointments[index]),
-                        )),
-                    trailing: Card(
-                      color: Colors.green,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          "See Appointment",
-                          style: TextStyle(color: Colors.white),
+              : appointments.activeAppointments.length == 0
+                  ? Center(
+                      child: Text("No active appointments"),
+                    )
+                  : ListView.builder(
+                      itemCount: appointments.activeAppointments.length,
+                      itemBuilder: (context, index) => ListTile(
+                        title: Text("Dr. " +
+                            appointments.activeAppointments[index]['doctor']),
+                        subtitle: Text(
+                            "${DateFormat.MMMMEEEEd().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated'])) + " - " + DateFormat.jm().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated']))}"),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AppointmentScreen(
+                                  appointments.activeAppointments[index]),
+                            )),
+                        trailing: Card(
+                          elevation: 0,
+                          color: Colors.green,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              "See Appointment",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                )),
+                    )),
     );
   }
 

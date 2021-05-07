@@ -5,6 +5,7 @@ import 'package:telehealth_client/components/AppointmentsList.dart';
 import 'package:telehealth_client/components/Overview.dart';
 import 'package:telehealth_client/contexts/Appointments.dart';
 import 'package:telehealth_client/contexts/Treatments.dart';
+import 'package:telehealth_client/screens/history_page/AllAppointments.dart';
 import 'package:telehealth_client/screens/treatments/TreatmentPage.dart';
 import 'package:telehealth_client/screens/wrapper.dart';
 
@@ -21,6 +22,8 @@ void main() {
       Provider(create: (_) => AppointmentList()),
       Provider(create: (_) => Overview()),
       Provider(create: (_) => TreatmentPage(treatmentData: {})),
+      Provider(create: (_) => AllAppointments()),
+      Provider(create: (_) => AllAppointments()),
     ],
     child: MyApp(),
   ));

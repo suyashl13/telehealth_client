@@ -51,9 +51,11 @@ class AuthHelper {
       {@required name,
       @required email,
       @required phone,
+      // ignore: non_constant_identifier_names
       @required birth_year,
       @required gender,
       @required password,
+      // ignore: non_constant_identifier_names
       @required is_doctor}) async {
     Map accountInfo = {
       'name': name,

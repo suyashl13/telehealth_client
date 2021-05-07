@@ -4,6 +4,7 @@ import 'package:telehealth_client/contexts/Treatments.dart';
 import 'package:telehealth_client/helpers/TreatmentsHelper.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class TreatmentPage extends StatefulWidget {
   Map treatmentData;
   TreatmentPage({@required this.treatmentData});
@@ -69,18 +70,20 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       ),
                     ],
                   ),
-                  MaterialButton(
-                    elevation: 0,
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        side: BorderSide(
-                          color: Color.fromRGBO(35, 97, 161, 1),
-                        )),
-                    textColor: Color.fromRGBO(35, 97, 161, 1),
-                    onPressed: () {},
-                    child: Text("Chat Live"),
-                  )
+                  !treatmentData['is_treated']
+                      ? MaterialButton(
+                          elevation: 0,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                              side: BorderSide(
+                                color: Color.fromRGBO(35, 97, 161, 1),
+                              )),
+                          textColor: Color.fromRGBO(35, 97, 161, 1),
+                          onPressed: () {},
+                          child: Text("Chat Live"),
+                        )
+                      : Padding(padding: EdgeInsets.zero)
                 ],
               ),
               SizedBox(
@@ -181,54 +184,57 @@ class _TreatmentPageState extends State<TreatmentPage> {
               SizedBox(
                 height: 40,
               ),
-              Center(
-                // ignore: deprecated_member_use
-                child: FlatButton(
-                  textColor: Colors.blue,
-                  color: Colors.transparent,
-                  onPressed: () async {
-                    try {
-                      await TreatmentsHelper()
-                          .completeTreatment(treatmentData['id']);
-                      return showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text("Consulted."),
-                          content: Text("Thank-you for consulting at us."),
-                          actions: [
-                            MaterialButton(
-                                textColor: Colors.blue,
-                                child: Text("Done"),
-                                onPressed: () {
-                                  Provider.of<Treatments>(context,
-                                          listen: false)
-                                      .deleteTreatment(treatmentData);
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                })
-                          ],
-                        ),
-                      );
-                    } catch (e) {
-                      return showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text("Error!"),
-                          content:
-                              Text("Unable to mark treatment as complete."),
-                          actions: [
-                            MaterialButton(
-                                textColor: Colors.red,
-                                child: Text("Okay"),
-                                onPressed: () => Navigator.pop(context))
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                  child: Text("Mark Treatment as Completed"),
-                ),
-              )
+              !treatmentData['is_treated']
+                  ? Center(
+                      // ignore: deprecated_member_use
+                      child: FlatButton(
+                        textColor: Colors.blue,
+                        color: Colors.transparent,
+                        onPressed: () async {
+                          try {
+                            await TreatmentsHelper()
+                                .completeTreatment(treatmentData['id']);
+                            return showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text("Consulted."),
+                                content:
+                                    Text("Thank-you for consulting at us."),
+                                actions: [
+                                  MaterialButton(
+                                      textColor: Colors.blue,
+                                      child: Text("Done"),
+                                      onPressed: () {
+                                        Provider.of<Treatments>(context,
+                                                listen: false)
+                                            .deleteTreatment(treatmentData);
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      })
+                                ],
+                              ),
+                            );
+                          } catch (e) {
+                            return showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text("Error!"),
+                                content: Text(
+                                    "Unable to mark treatment as complete."),
+                                actions: [
+                                  MaterialButton(
+                                      textColor: Colors.red,
+                                      child: Text("Okay"),
+                                      onPressed: () => Navigator.pop(context))
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                        child: Text("Mark Treatment as Completed"),
+                      ),
+                    )
+                  : Padding(padding: EdgeInsets.zero)
             ],
           ),
         ),

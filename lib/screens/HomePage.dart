@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage>
               ),
               Divider(),
               Text(
-                "Treatments",
+                "Ongoing Treatments",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,

@@ -67,32 +67,36 @@ class _HomeTreatmentsState extends State<HomeTreatments>
               )
             : isLoading
                 ? Center(child: CircularProgressIndicator())
-                : ListView.builder(
-                    itemCount: treatments.activeTreatments.length,
-                    itemBuilder: (context, index) => ListTile(
-                        title: Text("Dr. " +
-                            treatments.activeTreatments[index]['doctor']
+                : treatments.activeTreatments.length == 0
+                    ? Center(child: Text("No ongoing treatments"))
+                    : ListView.builder(
+                        itemCount: treatments.activeTreatments.length,
+                        itemBuilder: (context, index) => ListTile(
+                            title: Text("Dr. " +
+                                treatments.activeTreatments[index]['doctor']
+                                    .toString()),
+                            subtitle: Text(treatments.activeTreatments[index]
+                                    ['symptoms']
                                 .toString()),
-                        subtitle: Text(treatments.activeTreatments[index]
-                                ['symptoms']
-                            .toString()),
-                        trailing: Card(
-                          color: Colors.green,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: Text(
-                              "See Treatment",
-                              style: TextStyle(color: Colors.white),
+                            trailing: Card(
+                              elevation: 0,
+                              color: Colors.green,
+                              child: Padding(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  "See Treatment",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TreatmentPage(
-                                  treatmentData:
-                                      treatments.activeTreatments[index]),
-                            )))));
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TreatmentPage(
+                                      treatmentData:
+                                          treatments.activeTreatments[index]),
+                                )))));
   }
 
   @override

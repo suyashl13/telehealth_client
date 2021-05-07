@@ -32,6 +32,8 @@ dependencies:
   http: 0.11.3+17
   provider:
   intl:
+  flutter_custom_clippers: ^1.1.2
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +53,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/physician.png
+    - assets/doctor.png
     - assets/serverdown.jpg
+    - assets/cover_photo.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

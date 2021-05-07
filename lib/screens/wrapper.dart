@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telehealth_client/components/IndicateServerDown.dart';
 import 'package:telehealth_client/helpers/AuthHelper.dart';
-import 'package:telehealth_client/screens/HistoryPage.dart';
+import 'package:telehealth_client/screens/DoctorsPage.dart';
+import 'package:telehealth_client/screens/history_page/HistoryPage.dart';
 import 'package:telehealth_client/screens/HomePage.dart';
 import 'package:telehealth_client/screens/ProfilePage.dart';
-import 'package:telehealth_client/screens/SearchPage.dart';
 import 'package:telehealth_client/screens/authentication/LoginPage.dart';
 
 // ignore: camel_case_types
@@ -19,11 +20,11 @@ class _wrapperState extends State<wrapper>
     with AutomaticKeepAliveClientMixin<wrapper> {
   SharedPreferences _preferences;
   bool isLoading = true;
-  int _activePage = 0;
+  int _activePage = 1;
 
   final List kPages = [
     HomePage(),
-    SearchPage(),
+    DoctorsPage(),
     HistoryPage(),
     ProfilePage(),
   ];
@@ -70,18 +71,25 @@ class _wrapperState extends State<wrapper>
           currentIndex: _activePage,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text("Home")),
+                icon: Icon(Icons.home),
+                // ignore: deprecated_member_use
+                title: Text("Home")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search), title: Text("Search")),
+                icon: Icon(CupertinoIcons.add),
+                // ignore: deprecated_member_use
+                title: Text("Doctors")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.history), title: Text("History")),
+                icon: Icon(Icons.history),
+                // ignore: deprecated_member_use
+                title: Text("History")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: Text("Profile")),
+                icon: Icon(Icons.person),
+                // ignore: deprecated_member_use
+                title: Text("Profile")),
           ]),
     );
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

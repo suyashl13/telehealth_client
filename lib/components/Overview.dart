@@ -22,12 +22,12 @@ class _OverviewState extends State<Overview>
   @override
   Widget build(BuildContext context) {
     return Consumer<Appointments>(builder: (context, appointments, child) {
-      return Column(
-        children: [
-          Center(
-            child: Container(
-              child: DefaultTabController(
-                length: 2,
+      return DefaultTabController(
+        length: 2,
+        child: Column(
+          children: [
+            Center(
+              child: Container(
                 child: TabBar(
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorColor: Color.fromRGBO(35, 97, 161, 1),
@@ -54,16 +54,13 @@ class _OverviewState extends State<Overview>
                     ]),
               ),
             ),
-          ),
-          Expanded(
-              child: DefaultTabController(
-            length: 2,
-            child: TabBarView(
+            Expanded(
+                child: TabBarView(
               controller: _controller,
               children: [AppointmentList(), TokensList()],
-            ),
-          )),
-        ],
+            )),
+          ],
+        ),
       );
     });
   }
