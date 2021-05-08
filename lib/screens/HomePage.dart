@@ -50,26 +50,26 @@ class _HomePageState extends State<HomePage>
               SizedBox(
                 height: 14,
               ),
-              Row(
-                children: [
-                  Flexible(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                      ),
-                      height: 38,
-                      decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(8)),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: 'Search', border: InputBorder.none),
-                      ),
-                    ),
-                  ),
-                  IconButton(icon: Icon(Icons.search), onPressed: () {}),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Flexible(
+              //       child: Container(
+              //         padding: EdgeInsets.symmetric(
+              //           horizontal: 12,
+              //         ),
+              //         height: 38,
+              //         decoration: BoxDecoration(
+              //             color: Colors.grey[200],
+              //             borderRadius: BorderRadius.circular(8)),
+              //         child: TextFormField(
+              //           decoration: InputDecoration(
+              //               hintText: 'Search', border: InputBorder.none),
+              //         ),
+              //       ),
+              //     ),
+              //     IconButton(icon: Icon(Icons.search), onPressed: () {}),
+              //   ],
+              // ),
               Divider(),
               Text(
                 "Ongoing Treatments",

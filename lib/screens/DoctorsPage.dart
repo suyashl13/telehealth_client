@@ -32,6 +32,7 @@ class _DoctorsPageState extends State<DoctorsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 50,
         backgroundColor: Color.fromRGBO(35, 97, 161, 1),
         elevation: 0,

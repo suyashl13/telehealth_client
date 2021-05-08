@@ -27,6 +27,17 @@ class AuthHelper {
           _preferences.setInt('id', jsonDecode(value.body)['user']['id']);
           _preferences.setString(
               'authtoken', jsonDecode(value.body)['auth_token']);
+
+          _preferences.setString(
+              'name', jsonDecode(value.body)['user']['name']);
+          _preferences.setString(
+              'email', jsonDecode(value.body)['user']['email']);
+          _preferences.setString(
+              'phone', jsonDecode(value.body)['user']['phone'].toString());
+          if (jsonDecode(value.body)['user']['profile_photo'] != null) {
+            _preferences.setString('profile_photo',
+                jsonDecode(value.body)['user']['profile_photo']);
+          }
         }
       });
     } on SocketException {

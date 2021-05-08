@@ -14,6 +14,7 @@ class _HistoryPageState extends State<HistoryPage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 50,
             backgroundColor: Color.fromRGBO(35, 97, 161, 1),
             title: TabBar(
