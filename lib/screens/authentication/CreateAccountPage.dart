@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telehealth_client/helpers/AuthHelper.dart';
+import 'package:telehealth_client/screens/wrapper.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -260,6 +261,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                 gender: gender,
                                 password: password,
                                 is_doctor: 'false');
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => wrapper()));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(e.toString()),

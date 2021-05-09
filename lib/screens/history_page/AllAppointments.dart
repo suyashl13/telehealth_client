@@ -26,10 +26,14 @@ class _AllAppointmentsState extends State<AllAppointments> {
                     "Dr. ${appointments.activeAppointments[index]['doctor']}"),
                 subtitle: Text("Time Allocated : " +
                     DateFormat.yMMMMd().format(DateTime.parse(appointments
-                        .activeAppointments[index]['time_posted'])) +
+                        .activeAppointments[index]['time_posted']
+                        .toString()
+                        .split('+')[0])) +
                     " - " +
                     DateFormat.jm().format(DateTime.parse(appointments
-                        .activeAppointments[index]['time_posted']))),
+                        .activeAppointments[index]['time_posted']
+                        .toString()
+                        .split('+')[0]))),
                 trailing: Card(
                   elevation: 0,
                   color: Colors.blueGrey,

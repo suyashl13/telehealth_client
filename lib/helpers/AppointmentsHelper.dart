@@ -29,10 +29,10 @@ class AppointmentsHelper {
     }
   }
 
-  checkDoctorAvailablity(int doc_id, onSuccess(data), onError(error)) async {
+  checkDoctorAvailablity(int docId, onSuccess(data), onError(error)) async {
     try {
       await http
-          .get(baseURL + 'appointments/available_slots/$doc_id/')
+          .get(baseURL + 'appointments/available_slots/$docId/')
           .then((response) {
         if (response.statusCode != 200) {
           throw jsonDecode(response.body)['ERR'];

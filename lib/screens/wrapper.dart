@@ -20,7 +20,7 @@ class _wrapperState extends State<wrapper>
     with AutomaticKeepAliveClientMixin<wrapper> {
   SharedPreferences _preferences;
   bool isLoading = true;
-  int _activePage = 1;
+  int _activePage = 0;
 
   final List kPages = [
     HomePage(),

@@ -12,7 +12,6 @@ class DoctorHelper {
       @required Function onSuccess(data),
       @required Function onError(error)}) async {
     try {
-      print(baseURL + 'users/doctor/$query/');
       await http
           .get(
         baseURL + 'users/doctor/$query/',

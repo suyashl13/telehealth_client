@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telehealth_client/helpers/Env.dart';
 import 'package:http/http.dart' as http;
+import 'package:telehealth_client/screens/authentication/LoginPage.dart';
 
 class AuthHelper {
   final String baseURL = Env().baseURL;
@@ -37,6 +39,9 @@ class AuthHelper {
           if (jsonDecode(value.body)['user']['profile_photo'] != null) {
             _preferences.setString('profile_photo',
                 jsonDecode(value.body)['user']['profile_photo']);
+          } else {
+            _preferences.setString('profile_photo',
+                "https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png");
           }
         }
       });
@@ -116,5 +121,105 @@ class AuthHelper {
     } catch (e) {
       onServerDown();
     }
+  }
+
+  editProfile(Map profileData, Function onSuccess(data),
+      Function onError(error)) async {
+    _preferences = await SharedPreferences.getInstance();
+
+    var uri =
+        Uri.parse(baseURL + 'users/${_preferences.getInt('id').toString()}/');
+    var request = http.MultipartRequest('POST', uri);
+
+    request.headers['Uid'] = _preferences.getInt('id').toString();
+    request.headers['Authtoken'] = _preferences.getString('authtoken');
+
+    request.fields['name'] = profileData['name'];
+    request.fields['email'] = profileData['email'];
+    request.fields['phone'] = profileData['phone'].toString();
+    request.fields['password'] = profileData['password'] ?? 'null';
+
+    if (profileData['profile_photo'] != null) {
+      http.MultipartFile file = await http.MultipartFile.fromPath(
+          'profile_photo', profileData['profile_photo']);
+      request.files.add(file);
+    } else {
+      request.fields['profile_photo'] = 'null';
+    }
+
+    try {
+      var res = await request.send();
+      if (res.statusCode != 200) {
+        onError("Unable to update. Please try another email or phone.");
+      } else {
+        onSuccess("Successfully completed request.");
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    // await http.MultipartFile.fromPath(
+
+    // try {
+    //   await http
+    //       .post(baseURL + 'users/${_preferences.getInt('id').toString()}/',
+    //           body: jsonEncode({
+    //             'name': profileData['name'],
+    //             'email': profileData['email'],
+    //             'phone': profileData['phone'].toString(),
+    //             'password': profileData['password'] ?? 'null',
+    //             'profile_photo': profileData['profile_photo'] ?? 'null',
+    //           }),
+    //           headers: {
+    //         'Uid': _preferences.getInt('id').toString(),
+    //         'Authtoken': _preferences.getString('authtoken')
+    //       }).then((res) {
+    //     if (res.statusCode != 200) {
+    //       throw jsonDecode(res.body)['ERR'];
+    //     } else {
+    //       onSuccess(jsonDecode(res.body));
+    //     }
+    //   });
+    // } catch (e) {
+    //   print(e.toString());
+    //   onError(e.toString());
+    // }
+  }
+
+  getUser(
+      {@required Function onSuccess(data),
+      @required Function onError(error)}) async {
+    _preferences = await SharedPreferences.getInstance();
+    try {
+      await http.get(baseURL + 'users/${_preferences.getInt('id').toString()}/',
+          headers: {
+            'Uid': _preferences.getInt('id').toString(),
+            'Authtoken': _preferences.getString('authtoken')
+          }).then((res) {
+        if (res.statusCode != 200) {
+          throw jsonDecode(res.body)['ERR'];
+        } else {
+          onSuccess(jsonDecode(res.body));
+          if (jsonDecode(res.body)['profile_photo'] != null) {
+            _preferences.setString(
+                'profile_photo', jsonDecode(res.body)['profile_photo']);
+          }
+        }
+      });
+    } catch (e) {
+      onError(e.toString());
+    }
+  }
+
+  signOut(BuildContext context) async {
+    _preferences = await SharedPreferences.getInstance();
+    try {
+      await http.get(baseURL + 'users/signout/${_preferences.getInt('id')}/');
+    } catch (e) {
+      print("Unable to erase server token.");
+    }
+    _preferences.clear();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (_) => LoginPage()));
   }
 }

@@ -57,7 +57,7 @@ class _AppointmentListState extends State<AppointmentList>
                         title: Text("Dr. " +
                             appointments.activeAppointments[index]['doctor']),
                         subtitle: Text(
-                            "${DateFormat.MMMMEEEEd().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated'])) + " - " + DateFormat.jm().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated']))}"),
+                            "${DateFormat.MMMMEEEEd().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated'])) + " - " + DateFormat.jm().format(DateTime.parse(appointments.activeAppointments[index]['datetime_allocated'].toString().split('+')[0]))}"),
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(

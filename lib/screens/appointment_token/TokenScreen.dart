@@ -5,9 +5,7 @@ import 'package:intl/intl.dart';
 class TokenScreen extends StatelessWidget {
   Map tokenData;
 
-  TokenScreen(this.tokenData) {
-    print(this.tokenData);
-  }
+  TokenScreen(this.tokenData);
 
   TextStyle tableValue = TextStyle(
       fontWeight: FontWeight.bold, color: Color.fromRGBO(35, 97, 161, 1));
@@ -61,11 +59,15 @@ class TokenScreen extends StatelessWidget {
                   ListTile(
                     title: Text("Token\nPosted"),
                     trailing: Text(
-                      DateFormat.yMMMMd().format(
-                              DateTime.parse(tokenData['time_posted'])) +
+                      DateFormat.yMMMMd().format(DateTime.parse(
+                              tokenData['time_posted']
+                                  .toString()
+                                  .split('+')[0])) +
                           " - " +
-                          DateFormat.jm()
-                              .format(DateTime.parse(tokenData['time_posted'])),
+                          DateFormat.jm().format(DateTime.parse(
+                              tokenData['time_posted']
+                                  .toString()
+                                  .split('+')[0])),
                       style: tableValue,
                     ),
                   ),
@@ -86,7 +88,7 @@ class TokenScreen extends StatelessWidget {
                       ),
                       trailing: Text(
                         DateFormat.yMMMMd().format(
-                                DateTime.parse(tokenData['time_posted'])) +
+                                DateTime.parse(tokenData['date_expected'])) +
                             " - " +
                             tokenData['slot'],
                         style: TextStyle(

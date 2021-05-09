@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 class AppointmentScreen extends StatelessWidget {
   Map appointmentData;
 
-  AppointmentScreen(this.appointmentData);
+  AppointmentScreen(this.appointmentData) {
+    print(appointmentData);
+  }
 
   TextStyle tableValue = TextStyle(
       fontWeight: FontWeight.bold, color: Color.fromRGBO(35, 97, 161, 1));
@@ -57,24 +59,17 @@ class AppointmentScreen extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text("Token\nReceived"),
-                    trailing: Text(
-                      DateFormat.yMMMMd().format(
-                              DateTime.parse(appointmentData['token_posted'])) +
-                          " - " +
-                          DateFormat.jm().format(
-                              DateTime.parse(appointmentData['token_posted'])),
-                      style: tableValue,
-                    ),
-                  ),
-                  ListTile(
                     title: Text("Appointment\ngranted at"),
                     trailing: Text(
-                      DateFormat.yMMMMd().format(
-                              DateTime.parse(appointmentData['time_posted'])) +
+                      DateFormat.yMMMMd().format(DateTime.parse(
+                              appointmentData['time_posted']
+                                  .toString()
+                                  .split('+')[0])) +
                           " - " +
-                          DateFormat.jm().format(
-                              DateTime.parse(appointmentData['time_posted'])),
+                          DateFormat.jm().format(DateTime.parse(
+                              appointmentData['time_posted']
+                                  .toString()
+                                  .split('+')[0])),
                       style: tableValue,
                     ),
                   ),
@@ -95,8 +90,7 @@ class AppointmentScreen extends StatelessWidget {
                         DateFormat.yMMMMd().format(DateTime.parse(
                                 appointmentData['datetime_allocated'])) +
                             " - " +
-                            DateFormat.jm().format(DateTime.parse(
-                                appointmentData['datetime_allocated'])),
+                            "${DateFormat.jm().format(DateTime.parse(appointmentData['datetime_allocated'].toString().split('+')[0]))}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.white),
                       ),
