@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:telehealth_client/contexts/Treatments.dart';
 import 'package:telehealth_client/helpers/TreatmentsHelper.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class TreatmentPage extends StatefulWidget {
@@ -80,7 +81,24 @@ class _TreatmentPageState extends State<TreatmentPage> {
                                 color: Color.fromRGBO(35, 97, 161, 1),
                               )),
                           textColor: Color.fromRGBO(35, 97, 161, 1),
-                          onPressed: () {},
+                          onPressed: () async {
+                            final String doctorPhone =
+                                treatmentData['doctor_phone'].toString();
+                            final String phoneSms = 'sms:+91$doctorPhone';
+                            final String phone = 'tel:+91$doctorPhone';
+                            final String wAPhone =
+                                "whatsapp://send?phone=$phone";
+                            try {
+                              await launch(wAPhone);
+                            } catch (e) {
+                              try {
+                                await launch(phoneSms);
+                              } catch (e) {
+                                print("Unable to launch url.");
+                              }
+                              print("Unable to launch url.");
+                            }
+                          },
                           child: Text("Chat Live"),
                         )
                       : Padding(padding: EdgeInsets.zero)

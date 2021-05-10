@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return MaterialApp(
       title: 'TeleHealth Client.',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,

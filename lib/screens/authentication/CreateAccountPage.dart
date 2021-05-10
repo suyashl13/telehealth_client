@@ -157,6 +157,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                     return "Enter valid year of birth";
                                   }
                                 },
+                                keyboardType: TextInputType.number,
                                 maxLength: 4,
                                 onChanged: (e) {
                                   setState(() {
