@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telehealth_client/helpers/AuthHelper.dart';
-import 'package:telehealth_client/helpers/Dialoghelper.dart';
 import 'package:telehealth_client/screens/settings/EditProfile.dart';
 
 class ProfilePage extends StatefulWidget {

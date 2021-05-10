@@ -140,7 +140,8 @@ class _LoginPageState extends State<LoginPage> {
                                 setState(() {
                                   isLoading = !isLoading;
                                 });
-                                await AuthHelper().login(email, password);
+                                await AuthHelper()
+                                    .login(email.trim(), password.trim());
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(

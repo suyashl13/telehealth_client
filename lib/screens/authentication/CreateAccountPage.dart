@@ -254,12 +254,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           _formKey.currentState.save();
                           try {
                             await AuthHelper().createAccountAtBackend(
-                                name: name,
-                                email: email,
-                                phone: phone,
+                                name: name.trim(),
+                                email: email.trim(),
+                                phone: phone.trim(),
                                 birth_year: '$birth_year-06-13',
                                 gender: gender,
-                                password: password,
+                                password: password.trim(),
                                 is_doctor: 'false');
                             Navigator.pushReplacement(
                                 context,
