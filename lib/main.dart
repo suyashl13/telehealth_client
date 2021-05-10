@@ -9,7 +9,6 @@ import 'package:telehealth_client/contexts/Treatments.dart';
 import 'package:telehealth_client/screens/appointment/NewAppointmentScreen.dart';
 import 'package:telehealth_client/screens/appointment/SlotBookingHelper.dart';
 import 'package:telehealth_client/screens/history_page/AllAppointments.dart';
-import 'package:telehealth_client/screens/payments/PaymentInfoScreen.dart';
 import 'package:telehealth_client/screens/treatments/TreatmentPage.dart';
 import 'package:telehealth_client/screens/wrapper.dart';
 

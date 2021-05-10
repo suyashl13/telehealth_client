@@ -24,6 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   SharedPreferences _preferences;
   TextEditingController _phoneController, _emailController;
   var file;
+  bool profileChanged = false;
 
   @override
   void initState() {
@@ -55,6 +56,7 @@ class _EditProfileState extends State<EditProfile> {
       setState(() {
         userDetails['profile_photo'] = tfile.path;
         file = tfile;
+        profileChanged = true;
       });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -244,6 +246,9 @@ class _EditProfileState extends State<EditProfile> {
 
                                       if (userDetails['password'] == '') {
                                         userDetails['password'] = null;
+                                      }
+                                      if (!profileChanged) {
+                                        userDetails['profile_photo'] = null;
                                       }
                                       await AuthHelper()
                                           .editProfile(userDetails,

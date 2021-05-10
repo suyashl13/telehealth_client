@@ -16,39 +16,38 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        backgroundColor: Color.fromRGBO(35, 97, 161, 1),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height / 1.5,
-                color: Color.fromRGBO(35, 97, 161, 1),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 6,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 158.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Center(
-                        child: Text(
-                      "TELEHEALTH",
-                      style: TextStyle(color: Colors.white, fontSize: 30),
-                    )),
-                    SizedBox()
+                    Text(
+                      "TeleHealth".toUpperCase(),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 38,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Login to account".toUpperCase(),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
                   ],
                 ),
-              )
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+              ),
               Center(
                 child: Container(
                   height: MediaQuery.of(context).size.height / 2.2,
                   width: MediaQuery.of(context).size.width / 1.2,
-                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                  decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 5.0,
@@ -198,9 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               )
             ],
-          )
-        ],
-      ),
-    );
+          ),
+        ));
   }
 }
