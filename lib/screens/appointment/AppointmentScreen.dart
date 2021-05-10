@@ -9,7 +9,7 @@ class AppointmentScreen extends StatelessWidget {
     print(appointmentData);
   }
 
-  TextStyle tableValue = TextStyle(
+  final TextStyle tableValue = TextStyle(
       fontWeight: FontWeight.bold, color: Color.fromRGBO(35, 97, 161, 1));
 
   @override
