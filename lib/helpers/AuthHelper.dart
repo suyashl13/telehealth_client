@@ -56,7 +56,7 @@ class AuthHelper {
       var res = await http.get(baseURL + 'users/check_auth/', headers: {
         'Uid': _preferences.getInt('id').toString(),
         'Authtoken': _preferences.getString('authtoken')
-      });
+      }).timeout(Duration(seconds: 20));
       return jsonDecode(res.body)['Auth'];
     } catch (e) {
       throw "Server Down";
