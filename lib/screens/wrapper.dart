@@ -71,21 +71,21 @@ class _wrapperState extends State<wrapper>
           currentIndex: _activePage,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              // ignore: deprecated_member_use
-            ),
+                icon: Icon(Icons.home),
+                // ignore: deprecated_member_use
+                label: "Home"),
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.add),
-              // ignore: deprecated_member_use
-            ),
+                icon: Icon(CupertinoIcons.add),
+                // ignore: deprecated_member_use
+                label: "Doctors"),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              // ignore: deprecated_member_use
-            ),
+                icon: Icon(Icons.history),
+                // ignore: deprecated_member_use
+                label: "History"),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              // ignore: deprecated_member_use
-            ),
+                icon: Icon(Icons.person),
+                // ignore: deprecated_member_use
+                label: "Profile"),
           ]),
     );
   }
